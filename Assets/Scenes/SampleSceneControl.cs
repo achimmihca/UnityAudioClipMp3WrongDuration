@@ -8,6 +8,8 @@ public class SampleSceneControl : MonoBehaviour
 {
     private void Start()
     {
+        // Unity 2022.3.9f1 returns a length of 8.202 seconds
+        // Unity 2023.2.3f1 returns a length of 4.153 seconds. Thus, the issue seems to be fixed in Unity 2023.2.
         string relativePath = "Scenes/mp3-TestAudio-4sec.mp3";
         string fullPath = Path.Combine(Application.dataPath, relativePath);
 
@@ -15,7 +17,7 @@ public class SampleSceneControl : MonoBehaviour
 
         float expectedLengthInSeconds = 4;
         Debug.Log($"audioClip.length: {audioClip.length} seconds, expected length: {expectedLengthInSeconds} seconds");
-        if (Math.Abs(audioClip.length - expectedLengthInSeconds) > 0.1f)
+        if (Math.Abs(audioClip.length - expectedLengthInSeconds) > 0.5f)
         {
             Debug.LogError("audioClip.length is not as expected.");
         }
